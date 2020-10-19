@@ -19,7 +19,7 @@ public static class NativeCall
         });
         if (permission != NativeGallery.Permission.Granted)
         {
-            ShowToast("当前没有相册访问权限，请在设置中打开");
+            ShowToast("No hay acceso al álbum en este momento, abre en la configuración");
             //打开应用程序设置
             if (NativeGallery.CanOpenSettings()) NativeGallery.OpenSettings();
         }
@@ -38,7 +38,7 @@ public static class NativeCall
         });
         if (permission != NativeGallery.Permission.Granted)
         {
-            ShowToast("当前没有相册访问权限，请在设置中打开");
+            ShowToast("No hay acceso al álbum en este momento, abre en la configuración");
             //打开应用程序设置
             if (NativeGallery.CanOpenSettings()) NativeGallery.OpenSettings();
         }
@@ -59,13 +59,13 @@ public static class NativeCall
                     if (!string.IsNullOrEmpty(path[i]))
                         texs[i] = NativeGallery.LoadImageAtPath(path[i]);
                 }
-                catch(Exception ex) { Debug.LogWarning("第" + i + "张图片处理失败 : " + ex.Message + "\n" + path[i]); }
+                catch(Exception ex) { Debug.LogWarning("Error: " + i + " Falló el procesamiento de la imagen : " + ex.Message + "\n" + path[i]); }
             }
             if (callBack != null) callBack(texs);
         });
         if (permission != NativeGallery.Permission.Granted)
         {
-            ShowToast("当前没有相册访问权限，请在设置中打开");
+            ShowToast("No hay acceso al álbum en este momento, abre en la configuración");
             //打开应用程序设置
             if (NativeGallery.CanOpenSettings()) NativeGallery.OpenSettings();
         }
@@ -82,7 +82,7 @@ public static class NativeCall
         });
         if (permission != NativeGallery.Permission.Granted)
         {
-            ShowToast("当前没有相册访问权限，请在设置中打开");
+            ShowToast("No hay acceso al álbum en este momento, abre en la configuración");
             //打开应用程序设置
             if (NativeGallery.CanOpenSettings()) NativeGallery.OpenSettings();
         }
@@ -101,7 +101,7 @@ public static class NativeCall
         });
         if (permission != NativeGallery.Permission.Granted)
         {
-            ShowToast("当前没有相册访问权限，请在设置中打开");
+            ShowToast("No hay acceso al álbum en este momento, abre en la configuración");
             //打开应用程序设置
             if (NativeGallery.CanOpenSettings()) NativeGallery.OpenSettings();
         }
@@ -118,8 +118,8 @@ public static class NativeCall
         });
         if (permission != NativeGallery.Permission.Granted)
         {
-            ShowToast("当前没有相册访问权限，请在设置中打开");
-            //打开应用程序设置
+            ShowToast("No hay acceso al álbum en este momento, abre en la configuración");
+            //Abrir la configuración de la aplicación
             if (NativeGallery.CanOpenSettings()) NativeGallery.OpenSettings();
         }
     }
@@ -127,24 +127,25 @@ public static class NativeCall
 
     #region 打开相机拍照或录制
     /// <summary>
-    /// 打开相机拍照
+    /// Enciende la cámara para tomar fotos.
     /// </summary>
     public static void OpenCamera(Action<Texture2D> callBack)
     {
         NativeCamera.Permission permission = NativeCamera.TakePicture((string path) =>
         {
+            Debug.Log("calBack" + callBack);
             if (!string.IsNullOrEmpty(path) && callBack != null)
                 callBack(NativeCamera.LoadImageAtPath(path));
         });
         if (permission != NativeCamera.Permission.Granted)
         {
-            ShowToast("当前没有相机访问权限，请在设置中打开");
-            //打开应用程序设置
+            ShowToast("No hay acceso a la cámara en este momento, ábrala en la configuración");
+            //Abrir la configuración de la aplicación
             if (NativeCamera.CanOpenSettings()) NativeCamera.OpenSettings();
         }
     }
     /// <summary>
-    /// 打开相机拍照
+    /// Enciende la cámara para tomar fotos.
     /// </summary>
     public static void OpenCamera(Action<string> callBack)
     {
@@ -155,7 +156,7 @@ public static class NativeCall
         });
         if (permission != NativeCamera.Permission.Granted)
         {
-            ShowToast("当前没有相机访问权限，请在设置中打开");
+            ShowToast("No hay acceso a la cámara en este momento, ábrala en la configuración");
             //打开应用程序设置
             if (NativeCamera.CanOpenSettings()) NativeCamera.OpenSettings();
         }
@@ -172,7 +173,7 @@ public static class NativeCall
         });
         if (permission != NativeCamera.Permission.Granted)
         {
-            ShowToast("当前没有相机访问权限，请在设置中打开");
+            ShowToast("No hay acceso a la cámara en este momento, ábrala en la configuración");
             //打开应用程序设置
             if (NativeCamera.CanOpenSettings()) NativeCamera.OpenSettings();
         }
